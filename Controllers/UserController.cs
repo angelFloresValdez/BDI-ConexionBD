@@ -1,33 +1,47 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ConexionEF;
-using ConexionEF.Models;
-using ConexionEF.Services;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic;
+using ConexionEF.Models;
+using System.Linq;
+using System.Threading.Tasks;
+using ConexionEF.Services;
 
 namespace ConexionEF.Controllers
 {
     public class UserController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ApplicationDbContext _context;
 
         public UserController(
-            UserManager<IdentityUser> userManager, 
+            UserManager<IdentityUser> userManager,
+            RoleManager<IdentityRole> roleManager,
             SignInManager<IdentityUser> signInManager,
             ApplicationDbContext context)
         {
-            this._userManager = userManager;
-            this._signInManager = signInManager;
-            this._context = context;
+            _userManager = userManager;
+            _roleManager = roleManager;
+            _signInManager = signInManager;
+            _context = context;
+        }
+
+        // Método para inicializar roles si no existen
+        public async Task<IActionResult> InitializeRoles()
+        {
+            string[] roleNames = { MyConstants.RolAdmin, MyConstants.RolVendedor };
+
+            foreach (var roleName in roleNames)
+            {
+                if (!await _roleManager.RoleExistsAsync(roleName))
+                {
+                    await _roleManager.CreateAsync(new IdentityRole(roleName));
+                }
+            }
+
+            return RedirectToAction("Index", "Home");
         }
 
         [AllowAnonymous]
@@ -45,19 +59,25 @@ namespace ConexionEF.Controllers
                 return View(model);
             }
 
-            var user = new IdentityUser() 
+            var user = new IdentityUser()
             {
-                Email = model.Email,
-                UserName = model.Email
+                UserName = model.Email,
+                Email = model.Email
             };
 
-            var result = await _userManager.CreateAsync(user, password: model.Password);
+            var result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
-                await _signInManager.SignInAsync(user, isPersistent: true);
+                await _userManager.AddToRoleAsync(user, MyConstants.RolVendedor); // Asignar rol de vendedor por defecto al registrar
+
+                // Ejemplo de cómo agregar un claim al usuario
+               
+
+                await _signInManager.SignInAsync(user, isPersistent: true); // Iniciar sesión después del registro
+
                 return RedirectToAction("Index", "Home");
             }
-            else 
+            else
             {
                 foreach (var error in result.Errors)
                 {
@@ -71,9 +91,7 @@ namespace ConexionEF.Controllers
         [AllowAnonymous]
         public IActionResult Login(string message = null)
         {
-            if (message is not null) {
-                ViewData["message"] = message;
-            }
+            ViewData["Message"] = message;
             return View();
         }
 
@@ -93,79 +111,101 @@ namespace ConexionEF.Controllers
             }
             else
             {
-                ModelState.AddModelError(string.Empty, "Nombre de usuario o password incorrecto");
+                ModelState.AddModelError(string.Empty, "Nombre de usuario o contraseña incorrectos");
                 return View(model);
-
             }
         }
 
         [HttpPost]
         public async Task<IActionResult> Logout()
         {
-            await HttpContext.SignOutAsync(IdentityConstants.ApplicationScheme);
+            await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
 
-
         public async Task<IActionResult> List(string confirmed = null, string remove = null)
         {
-            var userList =  await this._context.Users.ToListAsync();
-            var userRoleList = await this._context.UserRoles.ToListAsync();
+            var userList = await _context.Users.ToListAsync();
+            var userRoleList = await _context.UserRoles.ToListAsync();
 
-            var userDtoList = userList.GroupJoin(userRoleList, u => u.Id, ur => ur.UserId, 
-                (u, ur) => new UserViewModel  {
+            var userDtoList = userList.GroupJoin(userRoleList, u => u.Id, ur => ur.UserId,
+                (u, ur) => new UserViewModel
+                {
                     User = u.UserName,
                     Email = u.Email,
                     Confirmed = u.EmailConfirmed,
-                    IsAdmin = ur.Any(ur => ur.UserId == u.Id)
+                    IsAdmin = ur.Any(ur => ur.UserId == u.Id && ur.RoleId == MyConstants.AdminRoleId),
+                    IsVendedor = ur.Any(ur => ur.UserId == u.Id && ur.RoleId == MyConstants.VendedorRoleId)
                 })
                 .OrderBy(u => u.User)
                 .ToList();
 
+            var model = new UserListViewModel();
+            model.UserList = userDtoList;
+            model.MessageConfirmed = confirmed;
+            model.MessageRemoved = remove;
 
-            var modelo = new UserListViewModel();
-            modelo.UserList = userDtoList;
-            modelo.MessageConfirmed = confirmed;
-            modelo.MessageRemoved = remove;
-
-            return View(modelo);
+            return View(model);
         }
 
-
         [HttpPost]
-        // [Authorize(Roles = Constantes.RolAdmin)]
-        public  async Task<IActionResult> HacerAdmin(string email)
+        [Authorize(Roles = MyConstants.RolAdmin)]
+        public async Task<IActionResult> HacerAdmin(string email)
         {
-            var usuario = await _context.Users
-                .FirstOrDefaultAsync(u => u.Email == email);
-
-            if (usuario is null)
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
             {
                 return NotFound();
             }
 
-            await _userManager.AddToRoleAsync(usuario, MyConstants.RolAdmin);
+            await _userManager.AddToRoleAsync(user, MyConstants.RolAdmin);
 
-            return RedirectToAction("List",
-                routeValues: new { confirmed = "Rol asignado correctamente a " + email, remove = ""  });
+            return RedirectToAction("List", new { confirmed = $"Rol de administrador asignado correctamente a {email}", remove = "" });
         }
 
         [HttpPost]
-        // [Authorize(Roles = Constantes.RolAdmin)]
+        [Authorize(Roles = MyConstants.RolAdmin)]
         public async Task<IActionResult> RemoverAdmin(string email)
         {
-            var usuario = await _context.Users
-                .FirstOrDefaultAsync(u => u.Email == email);
-
-            if (usuario is null)
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
             {
                 return NotFound();
             }
 
-            await _userManager.RemoveFromRoleAsync(usuario, MyConstants.RolAdmin);
+            await _userManager.RemoveFromRoleAsync(user, MyConstants.RolAdmin);
 
-            return RedirectToAction("List",
-                routeValues: new { confirmed = "", remove = "Rol removido correctamente a " + email });
+            return RedirectToAction("List", new { confirmed = "", remove = $"Rol de administrador removido correctamente a {email}" });
+        }
+
+        [HttpPost]
+        [Authorize(Roles = MyConstants.RolAdmin)]
+        public async Task<IActionResult> HacerVendedor(string email)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            await _userManager.AddToRoleAsync(user, MyConstants.RolVendedor);
+
+            return RedirectToAction("List", new { confirmed = $"Rol de vendedor asignado correctamente a {email}", remove = "" });
+        }
+
+        [HttpPost]
+        [Authorize(Roles = MyConstants.RolAdmin)]
+        public async Task<IActionResult> RemoverVendedor(string email)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            await _userManager.RemoveFromRoleAsync(user, MyConstants.RolVendedor);
+
+            return RedirectToAction("List", new { confirmed = "", remove = $"Rol de vendedor removido correctamente a {email}" });
         }
     }
 }

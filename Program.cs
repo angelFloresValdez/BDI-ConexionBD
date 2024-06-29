@@ -19,8 +19,13 @@ builder.Services.AddControllersWithViews(
     opc => opc.Filters.Add(new AuthorizeFilter(polityUserAuthentifition))
 );
 
-//Esto es una prueba para revision del código.
-builder.Services.AddDbContext<ApplicationDbContext>(opc => opc.UseNpgsql("name=MyConnection"));
+builder.Services.AddControllersWithViews();
+
+ builder.Services.AddDbContext<ApplicationDbContext>(opciones
+ => opciones.UseSqlServer("name=MyConnection"));
+
+
+
 
 
  builder.Services.AddAuthentication();
@@ -61,6 +66,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=User}/{action=Login}/{id?}");
 
 app.Run();

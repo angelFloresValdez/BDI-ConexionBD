@@ -23,7 +23,6 @@
 
 @if (Model.UserList is not null)
 {
-
     <form method="post">
         <table class="table table-hover">
             <thead>
@@ -33,6 +32,7 @@
                     <td>Email</td>
                     <td>Confirmed</td>
                     <td>Administrator</td>
+                    <td>Vendedor</td>
                 </tr>
             </thead>
             <tbody>
@@ -52,6 +52,18 @@
                             asp-route-email="@usuario.Email">
                                 Remover Admin
                             </button>
+                            <button class="btn btn-success me-2"
+                            asp-controller="User"
+                            asp-action="HacerVendedor"
+                            asp-route-email="@usuario.Email">
+                                Hacer Vendedor
+                            </button>
+                            <button class="btn btn-danger me-2"
+                            asp-controller="User"
+                            asp-action="RemoverVendedor"
+                            asp-route-email="@usuario.Email">
+                                Remover Vendedor
+                            </button>
                         </td>
                         <td>@usuario.User</td>
                         <td>@usuario.Email</td>
@@ -61,12 +73,16 @@
                                 <input class="form-check-input" type="checkbox" asp-for="@usuario.IsAdmin"  disabled>
                             </div>
                         </td>
+                        <td>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" asp-for="@usuario.IsVendedor" disabled>
+                            </div>
+                        </td>
                     </tr>
                 }
             </tbody>
         </table>
     </form>
-
 }
 else
 {

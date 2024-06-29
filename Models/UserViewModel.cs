@@ -18,6 +18,7 @@ namespace ConexionEF.Models
         public bool Confirmed { get; set; }
 
         public bool IsAdmin { get; set; }
+         public bool IsVendedor { get; set; }
 
     }
 }

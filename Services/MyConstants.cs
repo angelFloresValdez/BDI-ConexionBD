@@ -8,5 +8,11 @@ namespace ConexionEF.Services
     public class MyConstants
     {
         public const string RolAdmin = "admin";
+         public const string RolVendedor = "vendedor";
+    public const string AdminRoleId = "role-id-admin"; 
+    public const string VendedorRoleId = "role-id-vendedor"; 
+
+        
+        
     }
 }

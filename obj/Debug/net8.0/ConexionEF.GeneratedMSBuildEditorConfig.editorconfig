@@ -9,71 +9,75 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ConexionEF
 build_property.RootNamespace = ConexionEF
-build_property.ProjectDir = /Users/bluepeople/Documents/UniNorte/04.May-Ago 2024/BDI-ConexionBD/
+build_property.ProjectDir = C:\Users\Angel Flores\Downloads\Actividad clase 2\BDI-ConexionBD\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /Users/bluepeople/Documents/UniNorte/04.May-Ago 2024/BDI-ConexionBD
+build_property.MSBuildProjectDirectory = C:\Users\Angel Flores\Downloads\Actividad clase 2\BDI-ConexionBD
 build_property._RazorSourceGeneratorDebug = 
 
-[/Users/bluepeople/Documents/UniNorte/04.May-Ago 2024/BDI-ConexionBD/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
+[C:/Users/Angel Flores/Downloads/Actividad clase 2/BDI-ConexionBD/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/bluepeople/Documents/UniNorte/04.May-Ago 2024/BDI-ConexionBD/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
+[C:/Users/Angel Flores/Downloads/Actividad clase 2/BDI-ConexionBD/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/bluepeople/Documents/UniNorte/04.May-Ago 2024/BDI-ConexionBD/Views/Marcas/MarcaAdd.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWFyY2FzL01hcmNhQWRkLmNzaHRtbA==
+[C:/Users/Angel Flores/Downloads/Actividad clase 2/BDI-ConexionBD/Views/Marcas/MarcaAdd.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFyY2FzXE1hcmNhQWRkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/bluepeople/Documents/UniNorte/04.May-Ago 2024/BDI-ConexionBD/Views/Marcas/MarcaDelete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWFyY2FzL01hcmNhRGVsZXRlLmNzaHRtbA==
+[C:/Users/Angel Flores/Downloads/Actividad clase 2/BDI-ConexionBD/Views/Marcas/MarcaDelete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFyY2FzXE1hcmNhRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/bluepeople/Documents/UniNorte/04.May-Ago 2024/BDI-ConexionBD/Views/Marcas/MarcaEdit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWFyY2FzL01hcmNhRWRpdC5jc2h0bWw=
+[C:/Users/Angel Flores/Downloads/Actividad clase 2/BDI-ConexionBD/Views/Marcas/MarcaEdit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFyY2FzXE1hcmNhRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/bluepeople/Documents/UniNorte/04.May-Ago 2024/BDI-ConexionBD/Views/Marcas/MarcaList.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWFyY2FzL01hcmNhTGlzdC5jc2h0bWw=
+[C:/Users/Angel Flores/Downloads/Actividad clase 2/BDI-ConexionBD/Views/Marcas/MarcaList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFyY2FzXE1hcmNhTGlzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/bluepeople/Documents/UniNorte/04.May-Ago 2024/BDI-ConexionBD/Views/Shared/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
+[C:/Users/Angel Flores/Downloads/Actividad clase 2/BDI-ConexionBD/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/bluepeople/Documents/UniNorte/04.May-Ago 2024/BDI-ConexionBD/Views/Shared/_ValidationScriptsPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+[C:/Users/Angel Flores/Downloads/Actividad clase 2/BDI-ConexionBD/Views/Shared/_LinksLogin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MaW5rc0xvZ2luLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/bluepeople/Documents/UniNorte/04.May-Ago 2024/BDI-ConexionBD/Views/User/List.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9MaXN0LmNzaHRtbA==
+[C:/Users/Angel Flores/Downloads/Actividad clase 2/BDI-ConexionBD/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/bluepeople/Documents/UniNorte/04.May-Ago 2024/BDI-ConexionBD/Views/User/Login.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9Mb2dpbi5jc2h0bWw=
+[C:/Users/Angel Flores/Downloads/Actividad clase 2/BDI-ConexionBD/Views/User/List.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxMaXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/bluepeople/Documents/UniNorte/04.May-Ago 2024/BDI-ConexionBD/Views/User/Registry.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9SZWdpc3RyeS5jc2h0bWw=
+[C:/Users/Angel Flores/Downloads/Actividad clase 2/BDI-ConexionBD/Views/User/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/bluepeople/Documents/UniNorte/04.May-Ago 2024/BDI-ConexionBD/Views/User/_layout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9fbGF5b3V0LmNzaHRtbA==
+[C:/Users/Angel Flores/Downloads/Actividad clase 2/BDI-ConexionBD/Views/User/Registry.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxSZWdpc3RyeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/bluepeople/Documents/UniNorte/04.May-Ago 2024/BDI-ConexionBD/Views/_ViewImports.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+[C:/Users/Angel Flores/Downloads/Actividad clase 2/BDI-ConexionBD/Views/User/_layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxfbGF5b3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/bluepeople/Documents/UniNorte/04.May-Ago 2024/BDI-ConexionBD/Views/_ViewStart.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
+[C:/Users/Angel Flores/Downloads/Actividad clase 2/BDI-ConexionBD/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/bluepeople/Documents/UniNorte/04.May-Ago 2024/BDI-ConexionBD/Views/Shared/_Layout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = b-qwswugiyv6
+[C:/Users/Angel Flores/Downloads/Actividad clase 2/BDI-ConexionBD/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Angel Flores/Downloads/Actividad clase 2/BDI-ConexionBD/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-v3on95ynnd
