@@ -124,29 +124,29 @@ namespace ConexionEF.Controllers
         }
 
         public async Task<IActionResult> List(string confirmed = null, string remove = null)
-        {
-            var userList = await _context.Users.ToListAsync();
-            var userRoleList = await _context.UserRoles.ToListAsync();
+{
+    var userList = await _context.Users.ToListAsync();
+    var userRoleList = await _context.UserRoles.ToListAsync();
 
-            var userDtoList = userList.GroupJoin(userRoleList, u => u.Id, ur => ur.UserId,
-                (u, ur) => new UserViewModel
-                {
-                    User = u.UserName,
-                    Email = u.Email,
-                    Confirmed = u.EmailConfirmed,
-                    IsAdmin = ur.Any(ur => ur.UserId == u.Id && ur.RoleId == MyConstants.AdminRoleId),
-                    IsVendedor = ur.Any(ur => ur.UserId == u.Id && ur.RoleId == MyConstants.VendedorRoleId)
-                })
-                .OrderBy(u => u.User)
-                .ToList();
+    var model = new UserListViewModel();
 
-            var model = new UserListViewModel();
-            model.UserList = userDtoList;
-            model.MessageConfirmed = confirmed;
-            model.MessageRemoved = remove;
+    var userDtoList = userList.Select(u => new UserViewModel
+    {
+        User = u.UserName,
+        Email = u.Email,
+        Confirmed = u.EmailConfirmed,
+        IsAdmin = userRoleList.Any(ur => ur.UserId == u.Id &&_roleManager.Roles.Any(r => r.Id == ur.RoleId && r.Name == MyConstants.RolAdmin)),
+        IsVendedor = userRoleList.Any(ur => ur.UserId == u.Id && _roleManager.Roles.Any(r => r.Id == ur.RoleId && r.Name == MyConstants.RolVendedor))
+    })
+    .OrderBy(u => u.User)
+    .ToList();
 
-            return View(model);
-        }
+    model.UserList = userDtoList;
+    model.MessageConfirmed = confirmed;
+    model.MessageRemoved = remove;
+
+    return View(model);
+}
 
         [HttpPost]
         [Authorize(Roles = MyConstants.RolAdmin)]
@@ -162,6 +162,8 @@ namespace ConexionEF.Controllers
 
             return RedirectToAction("List", new { confirmed = $"Rol de administrador asignado correctamente a {email}", remove = "" });
         }
+
+        
 
         [HttpPost]
         [Authorize(Roles = MyConstants.RolAdmin)]
