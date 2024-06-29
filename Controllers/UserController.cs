@@ -68,12 +68,12 @@ namespace ConexionEF.Controllers
             var result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
-                await _userManager.AddToRoleAsync(user, MyConstants.RolVendedor); // Asignar rol de vendedor por defecto al registrar
+                await _userManager.AddToRoleAsync(user, MyConstants.RolVendedor); 
 
-                // Ejemplo de cómo agregar un claim al usuario
+                
                
 
-                await _signInManager.SignInAsync(user, isPersistent: true); // Iniciar sesión después del registro
+                await _signInManager.SignInAsync(user, isPersistent: true); 
 
                 return RedirectToAction("Index", "Home");
             }

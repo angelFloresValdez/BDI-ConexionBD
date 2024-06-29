@@ -29,8 +29,6 @@
                         </li>
 
                         
-
-                        
                     @if (User.IsInRole(MyConstants.RolVendedor))
                     {
                          <li class="nav-item">
@@ -38,9 +36,14 @@
                         </li>
                     }
 
+                         @if (User.IsInRole(MyConstants.RolAdmin))
+                    {
                          <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="List">Usuarios</a>
                         </li>
+                    }
+
+                        
                         
                          <partial name="_LinksLogin">
 
